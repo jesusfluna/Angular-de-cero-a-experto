@@ -1,0 +1,16 @@
+<h1>Buscando: <small>{{termino}}</small></h1>
+<hr>
+
+<div clas = "row animated fadeIn fast" *ngIf="heroes.length == 0">
+    <div clas = "col-md-12">
+        <div class = "alert alert-info" type="alert">
+            No existen resultados con el termino: {{termino}}
+        </div>
+    </div>
+</div>
+
+<div class="row" data-masonry='{"percentPosition": true }'>
+    <div class="col-sm-6 col-lg-4 mb-4">
+        <app-heroe-tarjeta [heroe]="foo" [indice]="foo.idx" *ngFor="let foo of heroes"></app-heroe-tarjeta>
+    </div>
+  </div>
