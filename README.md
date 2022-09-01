@@ -11,7 +11,7 @@ Aplicacion toma de contacto con la tecnologia angular
 * Componentes Header y Footer simples
 * ngIf y *ngFor
 
-### 01-SPA
+### 02-SPA
 Aplicacion SPA(Singel Page Application) heroes
 
 * Creacion de un proyecto SPA
