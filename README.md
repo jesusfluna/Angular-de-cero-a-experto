@@ -11,9 +11,20 @@ Aplicacion toma de contacto con la tecnologia angular
 * Componentes Header y Footer simples
 * ngIf y *ngFor
 
-### 01-SPA
+### 02-SPA
 Aplicacion SPA(Singel Page Application) heroes
 
 * Creacion de un proyecto SPA
 * Iniciacion a los Servicios y Pipes
 * Uso de Routes
+
+### 03-Spotiapp
+Aplicacion de uso de la API de spotify
+
+* Rutas y parametros de uta
+* Boostrap
+* Peticiones HTTP
+* Uso de la API de Spotify
+* Uso de *ngModel
+* Observables
+* Maps
