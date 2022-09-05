@@ -6,7 +6,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SpotifyService {
-  private token:string = "BQB_X8OBA0Bi8eKPzX7ySczNNx_bLICx4tKyTYk3fROrphzybq7qOAmzgQ4RKatJ1cVTb1vXIWT8WZp2ct9yyAjEHNxudnNwRDFHEQ0vVkEL1hhh7LQh7EuGwVdLiH-sx9AqNjgib6ZwitnJJI_CR1dK-2i3TEaiVz5I8kJXj2f7mw";
+  private clientId:string = "";
+  private clientSecret:string = "";
+  private token:string = "BQBtfKiYSftJAySfFMR-K1k-7KzJzQBJIRiCl5XxIgM6EGIfI_X-oaIYQMkpERd6s1TRKoXOel0-DDFlB9TWw7-sHVJRvCT_-_CYXFz97Qi7pzga4Tgs39T4b3e-GyVC8g1GQ57t4l-soNDlcHNY4ZqeVO-i13JfFdvcCwfkoyl4jA";
 
   constructor(private http:HttpClient) { }
 
@@ -24,7 +26,7 @@ export class SpotifyService {
     return this.getQuery('browse/new-releases').pipe(map((data:any) => data['albums'].items ));
   }
 
-  getArtista(termino:string){
+  getArtistas(termino:string){
     const headers = new HttpHeaders({
       'Authorization': 'Bearer '+this.token
     })
@@ -32,4 +34,42 @@ export class SpotifyService {
       return data['artists'].items;
     }));
   }
+
+  getArtista(id:string){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+this.token
+    })
+    
+    return this.getQuery("artists/"+id).pipe(map((data:any) => {
+      return data;
+    }));
+  }
+
+  getTopTracks(id:string){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+this.token
+    })
+    
+    return this.getQuery("artists/"+id+"/top-tracks?country=es").pipe(map((data:any) => {
+      return data['tracks'];
+    }));
+  }
+
+  /* generarToken(){
+    const authorizationTokenUrl = `https://accounts.spotify.com/api/token`;
+    const body = 'grant_type=client_credentials';
+    return this.http.post(authorizationTokenUrl, body, {
+        headers: new HttpHeaders({
+            Authorization:
+                'Basic  ' + btoa(this.clientId + ':' + this.clientSecret),
+            'Content-Type': 'application/x-www-form-urlencoded;',
+        }),
+    });
+  }
+
+  this.authService.login().subscribe(data => {
+    this.accessToken = data['access_token'];
+    this.tokenType = data['token_type'];
+}); */
+
 }
