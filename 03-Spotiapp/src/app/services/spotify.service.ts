@@ -6,11 +6,18 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SpotifyService {
-  private clientId:string = "";
-  private clientSecret:string = "";
-  private token:string = "BQBtfKiYSftJAySfFMR-K1k-7KzJzQBJIRiCl5XxIgM6EGIfI_X-oaIYQMkpERd6s1TRKoXOel0-DDFlB9TWw7-sHVJRvCT_-_CYXFz97Qi7pzga4Tgs39T4b3e-GyVC8g1GQ57t4l-soNDlcHNY4ZqeVO-i13JfFdvcCwfkoyl4jA";
+  private clientId:string =
+  private clientSecret:string =
+  public token:string = "";
 
   constructor(private http:HttpClient) { }
+
+  login(){
+    this.generarToken().subscribe((data:any)=>{
+      this.token = data['access_token'];
+      console.log(this.token);
+    })
+  }
 
   getQuery(query:string){
     const url = `https://api.spotify.com/v1/${query}`;
@@ -55,7 +62,7 @@ export class SpotifyService {
     }));
   }
 
-  /* generarToken(){
+  generarToken(){
     const authorizationTokenUrl = `https://accounts.spotify.com/api/token`;
     const body = 'grant_type=client_credentials';
     return this.http.post(authorizationTokenUrl, body, {
@@ -66,10 +73,4 @@ export class SpotifyService {
         }),
     });
   }
-
-  this.authService.login().subscribe(data => {
-    this.accessToken = data['access_token'];
-    this.tokenType = data['token_type'];
-}); */
-
 }

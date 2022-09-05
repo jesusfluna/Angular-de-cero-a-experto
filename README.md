@@ -28,3 +28,4 @@ Aplicacion de uso de la API de spotify
 * Uso de *ngModel
 * Observables
 * Maps
+    nota: para la generacion del token hace falta especificar en el servicio spotify.service.ts el clientId y el clientSecret generado en la web de spotify, en el codigo aparecen con error.
