@@ -6,8 +6,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SpotifyService {
-  private clientId:string =
-  private clientSecret:string =
+  private clientId:string = ""; //buscar en la web de spotify
+  private clientSecret:string = ""; //buscar en la web de spotify
   public token:string = "";
 
   constructor(private http:HttpClient) { }
