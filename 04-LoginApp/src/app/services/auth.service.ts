@@ -8,14 +8,17 @@ import { map } from 'rxjs/operators'
 })
 export class AuthService {
   private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
-  private apiKey = "AIzaSyARwPLWE9y9Hs0KUmSkyQEzNHTMEuaPofU";
+  private apiKey = ""; //TODO aqui habria que indicar la apiKey de nuestra aplicacion de fireBase
   userToken:string;
 
   constructor(private http:HttpClient) { 
     this.leerToken();
   }
 
-  logout(){}
+  logout(){
+    localStorage.removeItem("token");
+  }
+
   login(usuario:usuarioModel){
     const authData = {
       ...usuario,
@@ -46,6 +49,11 @@ export class AuthService {
   private guardarToken(id:string){
     this.userToken = id;
     localStorage.setItem("token",id);
+
+    let hoy = new Date();
+    hoy.setSeconds(3600);
+
+    localStorage.setItem('expira', hoy.getTime().toString());
   }
 
   leerToken(){
@@ -55,5 +63,20 @@ export class AuthService {
       this.userToken = "";
     }
     return this.userToken;
+  }
+
+  estaAutenticado():boolean{
+    if(this.userToken.length<2){
+      return false;
+    }
+
+    const expira = Number(localStorage.getItem('expira'));
+    const hoy = new Date();
+    hoy.setTime(expira);
+    
+    if(hoy > new Date())
+      return true;
+    else
+      return false;
   }
 }

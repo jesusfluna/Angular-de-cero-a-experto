@@ -39,3 +39,5 @@ Aplicacion para la gestion de autenticacion de usuarios
 * Creacion de usuarios
 * Posteo
 * Firebase Rest API
+
+nota: para usar la api de fireBase habrá que indicar la ApiKey del mismo n el sevicio auth.service.ts de la aplicacion.
