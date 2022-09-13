@@ -41,3 +41,15 @@ Aplicacion para la gestion de autenticacion de usuarios
 * Firebase Rest API
 
 nota: para usar la api de fireBase habrá que indicar la ApiKey del mismo n el sevicio auth.service.ts de la aplicacion.
+
+### 05-Formularios
+Creacion y manipulacion de formularios
+* ngModel
+* Validaciones pre fabricadas
+* Validaciones personalizadas
+* Validaciones asincronas
+* ngSubmit
+* Formularios desde el componente
+* Informacion por defecto
+* Subscripciones a campos del formulario
+
