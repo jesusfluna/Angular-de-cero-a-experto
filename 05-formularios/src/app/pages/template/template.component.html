@@ -1,6 +1,6 @@
 <h4>Formularios <small> template </small></h4>
 <hr>
-<form autocomplete="off" (ngSubmit)="guardar()">
+<form autocomplete="off" (ngSubmit)="guardar(forma)" #forma="ngForm">
 
   <div>
 
@@ -10,11 +10,14 @@
 
         <input class="form-control"
                name = "nombre"
+               [class.is-invalid]="name.invalid && name.touched"
                type="text"
-               ngModel
+               [ngModel]="usuario.nombre"
                placeholder="Nombre"
                required
-               minlength="5">
+               minlength="3"
+               #name="ngModel">
+        <small *ngIf="name.invalid && name.touched" class="form-text text-danger">Requerido mas de 3 caracteres</small>
       </div>
     </div>
 
@@ -24,7 +27,14 @@
 
         <input class="form-control"
                type="text"
-               placeholder="Apellido">
+               placeholder="Apellido"
+               required
+               minlength="3"
+               #apellido="ngModel"
+               [class.is-invalid]="apellido.invalid && apellido.touched"
+               name = "apellido"
+               [ngModel]="usuario.apellido">
+        <small *ngIf="apellido.invalid && apellido.touched" class="form-text text-danger">Requerido mas de 3 caracteres</small>
       </div>
     </div>
 
@@ -36,16 +46,37 @@
 
       <input class="form-control"
              type="email"
-             placeholder="Correo electrónico">
+             placeholder="Correo electrónico"
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             [class.is-invalid]="correo.invalid && correo.touched"
+             #correo="ngModel"
+             [ngModel]="usuario.correo"
+             name = "correo"
+             required>
+      <small *ngIf="correo.invalid && correo.touched" class="form-text text-danger">Formato del correo invalido</small>
     </div>
   </div>
 
-
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Pais</label>
+    <div class="col-8">
+      <select class="form-control"
+        name="pais"
+        [disabled]="paises.length === 0"
+        [ngModel]="usuario.pais"
+        #pais="ngModel"
+        [class.is-invalid]="pais.invalid && pais.touched"
+        required>
+        <option *ngFor="let pais of paises" [value]="pais.codigo">{{pais.nombre}}</option>
+      </select>
+      <small *ngIf="pais.invalid && pais.touched" class="form-text text-danger">No hay ningun pais seleccionado</small>
+    </div>
+  </div>
 
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
-      <button type="submit" class="btn btn-outline-primary btn-block">
+      <button type="submit" class="w-100 btn btn-outline-primary btn-block">
         Guardar
       </button>
     </div>
