@@ -1,26 +1,34 @@
 <h4>Formularios <small> reactivo </small></h4>
 <hr>
-<form autocomplete="off">
+<form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
 
   <div>
 
     <div class="form-group row">
       <label class="col-2 col-form-label">Nombre</label>
-      <div class="col-8">
+      <div class="col">
 
         <input class="form-control"
                type="text"
-               placeholder="Nombre">
+               placeholder="Nombre" 
+               formControlName="nombre"
+               [class.is-invalid]="nombreNoValido">
+        <small class="text-danger" *ngIf="nombreNoValido">Campo requerido</small><br>
+        <small class="text-danger" *ngIf="nombreNoValido">5 caracteres minimo</small>
       </div>
     </div>
 
     <div class="form-group row">
       <label class="col-2 col-form-label">Apellido</label>
-      <div class="col-8">
+      <div class="col">
 
         <input class="form-control"
                type="text"
-               placeholder="Apellido">
+               placeholder="Apellido" 
+               formControlName="apellido"
+               [class.is-invalid]="apellidoNoValido">
+        <small class="text-danger" *ngIf="apellidoNoValido">Campo requerido</small><br>
+        <small class="text-danger" *ngIf="apellidoNoValido">5 caracteres minimo</small>
       </div>
     </div>
 
@@ -28,23 +36,55 @@
 
   <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
-    <div class="col-8">
+    <div class="col">
 
       <input class="form-control"
              type="email"
-             placeholder="Correo electrónico">
+             placeholder="Correo electrónico" 
+             formControlName="correo"
+             [class.is-invalid]="correoNoValido">
+      <small class="text-danger" *ngIf="correoNoValido">Campo requerido</small><br>
+      <small class="text-danger" *ngIf="correoNoValido">Formato de email requerido</small>
     </div>
   </div>
+  
+  <div class="form-group row" formGroupName="direccion">
+    <label class="col-2 col-form-label">Dirección</label>
+      <div class="col">
+        <input type="text"
+                class="form-control"
+                placeholder="Distrito"
+                formControlName="distrito"
+                [class.is-invalid]="distritoNoValido">
+                <small class="text-danger" *ngIf="distritoNoValido">Campo requerido</small>
+      </div>
+      <div class="col">
+        <input type="text"
+        class="form-control"
+        placeholder="Ciudad"
+        formControlName="ciudad"
+        [class.is-invalid]="ciudadNoValido">
+        <small class="text-danger" *ngIf="ciudadNoValido">Campo requerido</small>
+      </div>
+  </div>
 
-
-
+  <br>
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
-    <div class="input-group col-md-8">
-      <button type="submit" class="btn btn-outline-primary btn-block">
+    <div class="input-group col">
+      <button type="submit" class="w-100 btn btn-outline-primary btn-block">
         Guardar
       </button>
     </div>
   </div>
+
+  <hr>
+  <pre>
+    Estado del formulario: {{ forma.valid}}
+    <br>
+    <pre>
+      {{ forma.value | json }}
+    </pre>
+  </pre>
 
 </form>
