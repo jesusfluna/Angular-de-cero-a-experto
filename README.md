@@ -53,3 +53,9 @@ Creacion y manipulacion de formularios
 * Informacion por defecto
 * Subscripciones a campos del formulario
 
+### 06-HeroesApp
+Uso de la API de FireBase en una app CRUD simple
+* Uso del modulo HTTP.
+* Servicios restful de Firebase
+* POST, GET, DELETE, PUT
+* Configuraciones en la consola de Firebase.

@@ -28,7 +28,7 @@
                formControlName="apellido"
                [class.is-invalid]="apellidoNoValido">
         <small class="text-danger" *ngIf="apellidoNoValido">Campo requerido</small><br>
-        <small class="text-danger" *ngIf="apellidoNoValido">5 caracteres minimo</small>
+        <small class="text-danger" *ngIf="apellidoNoValido">No puede llamarse BinLaden</small>
       </div>
     </div>
 
@@ -47,6 +47,40 @@
       <small class="text-danger" *ngIf="correoNoValido">Formato de email requerido</small>
     </div>
   </div>
+
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Usuario</label>
+    <div class="col">
+      <input class="form-control"
+             type="text"
+             placeholder="Nombre de usuario" 
+             formControlName="usuario"
+             [class.is-invalid]="usuarioNoValido">
+      <small class="text-danger" *ngIf="usuarioNoValido">Nombre de usuario en ya en uso</small><br>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Contraseña</label>
+    <div class="col">
+
+      <input class="form-control"
+             type="password"
+             placeholder="Contraseña" 
+             formControlName="pass1"
+             [class.is-invalid]="pass1NoValido">
+    </div>
+    <div class="col">
+
+      <input class="form-control"
+             type="password"
+             placeholder="Repetir contraseña" 
+             formControlName="pass2"
+             [class.is-invalid]="pass2NoValido">
+    </div>
+  </div>
+  <br>
   
   <div class="form-group row" formGroupName="direccion">
     <label class="col-2 col-form-label">Dirección</label>
@@ -65,6 +99,35 @@
         formControlName="ciudad"
         [class.is-invalid]="ciudadNoValido">
         <small class="text-danger" *ngIf="ciudadNoValido">Campo requerido</small>
+      </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+      <div class="col">
+        <table class="table">
+         <thead class="table-dark">
+          <tr>
+            <td>ID</td>
+            <td>Pasatiempo</td>
+            <td>Borrar</td>
+          </tr>
+         </thead> 
+
+         <tbody formArrayName="pasatiempos">
+          <tr *ngFor="let control of pasatiempos.controls; let i = index">
+            <td>{{ i +1 }}</td>
+            <td>
+              <input class="form-control" type="text" [formControlName]="i">
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="borrarPasatiempos(i)">Borrar</button>
+            </td>
+          </tr>
+         </tbody>
+        </table>
+          <button class="btn btn-primary mt-3 mb-5 btn-block w-100" type="button" (click)="agregarPasatiempos()">+Agregar</button>
       </div>
   </div>
 
