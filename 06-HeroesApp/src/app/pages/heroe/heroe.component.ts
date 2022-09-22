@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroeModel } from 'src/app/models/heroe.models';
 import { NgForm } from '@angular/forms'
+import { HeroesService } from 'src/app/services/heroes.service';
+import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-heroe',
@@ -10,9 +14,17 @@ import { NgForm } from '@angular/forms'
 export class HeroeComponent implements OnInit {
   heroe = new HeroeModel();
 
-  constructor() { }
+  constructor(private heroesService:HeroesService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if ( id !== 'nuevo' && id !== null){
+      this.heroesService.getHeroe(id).subscribe((resp:HeroeModel) =>{
+        this.heroe = resp;
+        this.heroe.id = id;
+      });
+    }
   }
 
   guardar(form:NgForm){
@@ -22,7 +34,29 @@ export class HeroeComponent implements OnInit {
       return;
     }
 
-    console.log(form);
-    console.log(this.heroe);
+    Swal.fire({
+      title: 'Espere',
+      text: 'Guardando la informacion',
+      icon: 'info',
+      allowOutsideClick: false
+    });
+
+    Swal.showLoading();
+
+    let peticion: Observable<any>;
+
+    if (this.heroe.id){
+      peticion = this.heroesService.actualizarHeroe(this.heroe)
+    }else{
+      peticion = this.heroesService.crearHeroe(this.heroe)
+    }
+
+    peticion.subscribe(resp =>{
+      Swal.fire({
+        title: this.heroe.nombre,
+        text: "Actualizacion correcta",
+        icon: "success",
+      })
+    })
   }
 }
