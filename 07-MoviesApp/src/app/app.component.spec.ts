@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Firechat'`, () => {
+  it(`should have as title 'MoviesApp'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Firechat');
+    expect(app.title).toEqual('MoviesApp');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Firechat app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('MoviesApp app is running!');
   });
 });

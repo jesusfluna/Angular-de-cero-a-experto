@@ -60,11 +60,11 @@ Uso de la API de FireBase en una app CRUD simple
 * POST, GET, DELETE, PUT
 * Configuraciones en la consola de Firebase.
 
-### 07-HeroesApp
-Uso de la API de FireBase en una app CRUD simple
-* AngularFire2 - Librería oficial de angular para conectarse a Firebase.
-* Crear observables para escuchar mediante sockets los cambios en Firebase.
-* Autenticación de Google y Twitter para nuestro chat.
-* AngularFire2 para manejar las inserciones.
-* Uso de promesas para poder ejecutar funciones cuando detectamos cambios en la base de datos.
-* Uso de promesas para poder ejecutar funciones cuando detectamos cambios en la base de datos.
+### 07-MoviesApp
+API muy popular llamada TheMovieDB API, para hacer una aplicación de búsqueda de películas
+* Http Get
+* Operadores de RXJS como el Tap y Map
+* Combinar observables
+* Módulos
+* Slideshow
+* Swiper.
